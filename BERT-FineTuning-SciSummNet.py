@@ -4,7 +4,6 @@ from transformers import BertTokenizer, BertForSequenceClassification, BertConfi
 from transformers import AdamW, get_linear_schedule_with_warmup
 import pandas as pd
 
-# Define a custom dataset class for summarization
 class SummarizationDataset(Dataset):
     def __init__(self, csv_path, tokenizer, max_length):
         self.data = pd.read_csv(csv_path)
@@ -36,17 +35,17 @@ class SummarizationDataset(Dataset):
             'labels': input_ids  # Set input_ids as labels for sequence classification
         }
 
-# Load the pre-trained BERT model and tokenizer
+# Loading the pre-trained BERT model and tokenizer
 model_name = 'bert-base-uncased'
 model_config = BertConfig.from_pretrained(model_name)
 model_config.num_labels = model_config.hidden_size  # Set num_labels same as hidden_size for sequence classification
 model = BertForSequenceClassification.from_pretrained(model_name, config=model_config)
 tokenizer = BertTokenizer.from_pretrained(model_name)
 
-# Set the path to your CSV dataset
+# Setting the path to CSV dataset
 csv_path = 'scisumm.csv'
 
-# Set the maximum sequence length
+# maximum sequence length
 max_length = 512
 
 # Create the dataset
