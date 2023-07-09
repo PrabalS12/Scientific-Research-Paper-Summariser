@@ -100,6 +100,8 @@ class ResearchPaperSummariser:
     
         return final_paper_corpus
 
+
+    
     
     def generate_processed_corpus(self):
         pdf = self.Pdf
@@ -117,24 +119,14 @@ class ResearchPaperSummariser:
 
     return final_paper_corpus
 
-def generate_summary(self, processed_corpus):
-    return_summary = {}
-    summarization = pipeline("summarization")
-    for i in processed_corpus:
-        original_text = processed_corpus[i]
-        summary_text = summarization(original_text)[0]['summary_text']
-        return_summary[i] = summary_text
-    return return_summary
-corpus = {} # Provide your corpus data here
 
-Create an instance of the ResearchPaperSummariser class
-summarizer = ResearchPaperSummariser(corpus)
 
-Generate the processed corpus
-processed_corpus = summarizer.generate_processed_corpus()
 
-Generate the summary
-summary = summarizer.generate_summary(processed_corpus)
-
-Print the summary
-print(summary)
+    def generate_summary(self, processed_corpus):
+        return_summary = {}
+        summarization = pipeline("summarization")
+        for i in processed_corpus:
+            original_text = processed_corpus[i]
+            summary_text = summarization(original_text)[0]['summary_text']
+            return_summary[i] = summary_text
+        return return_summary
